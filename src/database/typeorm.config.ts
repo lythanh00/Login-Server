@@ -1,7 +1,7 @@
 // src/database/typeorm.config.ts
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { User } from 'users/user.entity';
+import { User } from 'database/user.entity';
 
 export const typeOrmConfigAsync = {
   imports: [ConfigModule],
@@ -11,7 +11,7 @@ export const typeOrmConfigAsync = {
     port: 3306,
     username: 'root',
     password: '070902',
-    database: 'social_web',
+    database: 'login',
     entities: [User], // Danh sách các entity
     synchronize: true, // Chỉ dùng trong môi trường phát triển
   }),

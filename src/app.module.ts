@@ -9,16 +9,19 @@ import { SendgridModule } from './sendgrid/sendgrid.module';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfigAsync } from './database/typeorm.config'; // Import cấu hình async
+import { UsersModule } from 'users/users.module';
+import { AuthModule } from 'auth/auth.module';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ ignoreEnvFile: true }),
+    AuthModule,
+    UsersModule,
+    JwtModule,
+    PassportModule,
 
-    // AuthModule,
-
-    // SendgridModule,
     LoggerModule.forRoot(),
-    ConfigModule, // Import ConfigModule để sử dụng ConfigService
     TypeOrmModule.forRootAsync(typeOrmConfigAsync),
   ],
   controllers: [AppController],
