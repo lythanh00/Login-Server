@@ -43,5 +43,9 @@ export class AuthController {
   @Get('profile')
   async getProfile(@Request() req) {
     console.log('req.user.id', req.user.id);
+    return {
+      name: 'ly tien thanh',
+      email: 'lytienthanhs1@gmail.com',
+    };
   }
 }
