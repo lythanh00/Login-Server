@@ -7,6 +7,7 @@ import {
   UseGuards,
   Get,
   Request,
+  Res,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dtos/login.dto';
@@ -21,10 +22,17 @@ export class AuthController {
   //   @UseGuards(LocalAuthGuard)
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  login(
-    @Body() loginDto: LoginDto,
-  ): Promise<{ access_token: string; refresh_token: string }> {
-    return this.authService.login(loginDto.email, loginDto.password);
+  async login(@Body() loginDto: LoginDto) {
+    await this.authService.login(loginDto.email, loginDto.password);
+
+    return true;
+  }
+
+  @Post('verify-otp')
+  async verifyOTP(@Body() otpDto: { otp: string; email: string }) {
+    const { otp, email } = otpDto;
+
+    return await this.authService.verifyOTP(otp, email);
   }
 
   @Post('/refresh')

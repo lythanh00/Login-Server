@@ -20,6 +20,9 @@ import { PassportModule } from '@nestjs/passport';
     UsersModule,
     JwtModule,
     PassportModule,
+    ConfigModule.forRoot({
+      isGlobal: true, // Để biến môi trường có thể truy cập từ mọi nơi trong ứng dụng
+    }),
 
     LoggerModule.forRoot(),
     TypeOrmModule.forRootAsync(typeOrmConfigAsync),
